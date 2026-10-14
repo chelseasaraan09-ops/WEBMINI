@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dompetku - Pelacak Pengeluaran</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>💰 Dompetku</h1>
+    <button id="themeToggle" class="icon-btn" aria-label="Ganti tema">🌙</button>
+  </header>
+
+  <main class="container">
+    <!-- Ringkasan -->
+    <section class="summary" aria-label="Ringkasan keuangan">
+      <div class="stat">
+        <span class="stat-label">Saldo</span>
+        <strong id="balance" class="stat-value">Rp 0</strong>
+      </div>
+      <div class="stat income">
+        <span class="stat-label">Pemasukan</span>
+        <strong id="totalIncome" class="stat-value">Rp 0</strong>
+      </div>
+      <div class="stat expense">
+        <span class="stat-label">Pengeluaran</span>
+        <strong id="totalExpense" class="stat-value">Rp 0</strong>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section class="card">
+      <h2 id="formTitle">Tambah Transaksi</h2>
+      <form id="txForm" novalidate>
+        <input type="hidden" id="txId">
+
+        <div class="type-toggle" role="radiogroup" aria-label="Jenis transaksi">
+          <label>
+            <input type="radio" name="type" value="expense" checked>
+            <span>Pengeluaran</span>
+          </label>
+          <label>
+            <input type="radio" name="type" value="income">
+            <span>Pemasukan</span>
+          </label>
+        </div>
+
+        <div class="field">
+          <label for="desc">Keterangan</label>
+          <input type="text" id="desc" placeholder="Contoh: Makan siang" maxlength="60">
+          <small class="error" id="descError"></small>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label for="amount">Jumlah (Rp)</label>
+            <input type="number" id="amount" placeholder="25000" min="1">
+            <small class="error" id="amountError"></small>
+          </div>
+          <div class="field">
+            <label for="date">Tanggal</label>
+            <input type="date" id="date">
+            <small class="error" id="dateError"></small>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="category">Kategori</label>
+          <select id="category">
+            <option>Makanan</option>
+            <option>Transportasi</option>
+            <option>Belanja</option>
+            <option>Tagihan</option>
+            <option>Hiburan</option>
+            <option>Pendidikan</option>
+            <option>Gaji / Uang Saku</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+
+        <div class="actions">
+          <button type="submit" id="submitBtn" class="btn primary">Simpan</button>
+          <button type="button" id="cancelBtn" class="btn" hidden>Batal</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Daftar -->
+    <section class="card">
+      <div class="list-head">
+        <h2>Riwayat Transaksi</h2>
+        <button id="clearAll" class="btn danger small">Hapus Semua</button>
+      </div>
+
+      <div class="filters">
+        <input type="search" id="search" placeholder="Cari keterangan...">
+        <select id="filterType" aria-label="Filter jenis">
+          <option value="all">Semua jenis</option>
+          <option value="income">Pemasukan</option>
+          <option value="expense">Pengeluaran</option>
+        </select>
+        <select id="filterCategory" aria-label="Filter kategori">
+          <option value="all">Semua kategori</option>
+        </select>
+      </div>
+
+      <ul id="txList" class="tx-list"></ul>
+      <p id="emptyState" class="empty" hidden>Belum ada transaksi. Tambahkan yang pertama di atas! ✨</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Dibuat dengan HTML, CSS, dan JavaScript · Data tersimpan di browser kamu
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
